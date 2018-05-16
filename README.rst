@@ -73,19 +73,19 @@ Build the debian package from inside the debian qemu-mips64 virtual machine
 After launching the debian qemu-mips64 virtual machine as described above, install some build dependencies::
 
    apt-get update
-   apt-get install build-essential devscripts debhelper flex bison pkg-config vim libgps-dev
+   apt-get install build-essential devscripts debhelper flex bison pkg-config vim libgps-dev gpsd
   
 Download the olsrd tarball for which you want to build the debian package::
 
-   wget http://www.olsr.org/releases/0.9/olsrd-0.9.0.3.tar.gz
+   wget http://www.olsr.org/releases/0.9/olsrd-0.9.6.1.tar.gz
   
 Check the checksum and then rename the olsrd tarball according to the debian's way::
 
-   mv olsrd-0.9.0.3.tar.gz olsrd_0.9.0.3.orig.tar.gz
-  
+   mv olsrd-0.9.6.1.tar.gz olsrd_0.9.6.1.orig.tar.gz
+   
 Extract it::
 
-   tar xf olsrd_0.9.0.3.orig.tar.gz
+   tar xf olsrd_0.9.6.1.orig.tar.gz
   
 Download the ``debian/`` directory with some ninux-targeted customizations (contained in this repository and described below)::
 
@@ -98,16 +98,19 @@ and extract it::
 Move the ``debian/`` directory to the directory with the olsrd sources and cd to it::
 
    mv -v ninux-olsrd-debian-master/debian olsrd-0.9.0.3/
-   cd olsrd-0.9.0.3/debian
+   cd olsrd-0.9.6.1/debian
   
 Update the debian ``changelog`` with the ``dch`` tool (e.g. the ``-v`` option updates the version in the changelog)::
 
    export EDITOR=vim
-   dch -v 0.9.0.3
-  
-Edit the ``control`` file, if needed::
+   dch -v 0.9.6.1
+   ctrl-z
+   rm changelog 
+   mv changelog.dch changelog
+   
+   Check the ``changelog`` file, if necessary :
 
-   vim control
+   cat changelog | grep "0.9.6.1"
   
 Build the debian packages (from inside the debian directory)::
 
@@ -116,8 +119,8 @@ Build the debian packages (from inside the debian directory)::
 If the build is successful the .deb files will be in the parent directory.
 We can transfer them through scp::
 
-   scp ../../olsrd_0.9.0.3_mips.deb myhostname:/tmp/
-   scp ../../olsrd-plugins_0.9.0.3_mips.deb myhostname:/tmp/
+   scp ../../olsrd_0.9.6.1_mips.deb myhostname:/tmp/
+   scp ../../olsrd-plugins_0.9.6.1_mips.deb myhostname:/tmp/
 
 
 Ninux targeted customizations

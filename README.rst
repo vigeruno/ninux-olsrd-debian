@@ -97,7 +97,7 @@ and extract it::
   
 Move the ``debian/`` directory to the directory with the olsrd sources and cd to it::
 
-   mv -v ninux-olsrd-debian-master/debian olsrd-0.9.0.3/
+   mv -v ninux-olsrd-debian-master/debian olsrd-0.9.6.1/
    cd olsrd-0.9.6.1/debian
   
 Update the debian ``changelog`` with the ``dch`` tool (e.g. the ``-v`` option updates the version in the changelog)::

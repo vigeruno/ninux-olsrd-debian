@@ -101,8 +101,10 @@ Move the ``debian/`` directory to the directory with the olsrd sources and cd to
    cd olsrd-0.9.6.1/debian
   
 Update the debian ``changelog`` with the ``dch`` tool (e.g. the ``-v`` option updates the version in the changelog)::
-
-   dch -v 0.9.6.1
+  
+   export EDITOR=vim
+   
+   dch -v 0.9.6.1export
 
    ctrl-z
     
